@@ -6,13 +6,6 @@ import (
 	"github.com/pkg/errors"
 )
 
-func NewHelloService() (*service.HelloService, error) {
-	var hello_Service *service.HelloService
-	err := container.Invoke(func(_service *service.HelloService) {
-		hello_Service = _service
-	})
-	return hello_Service, errors.WithStack(err)
-}
 func NewRedisClient() (*clients.RedisPool, error) {
 	var redisPool *clients.RedisPool
 	err := container.Invoke(func(_redisPool *clients.RedisPool) {
@@ -27,4 +20,12 @@ func NewRedisLock() (*clients.RedisLock, error) {
 		redisLock = _redisLock
 	})
 	return redisLock, errors.WithStack(err)
+}
+
+func NewUploadService() (*service.UploadService, error) {
+	var upload_Service *service.UploadService
+	err := container.Invoke(func(_service *service.UploadService) {
+		upload_Service = _service
+	})
+	return upload_Service, errors.WithStack(err)
 }

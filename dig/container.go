@@ -31,7 +31,9 @@ func initContainer() *dig.Container {
 	containerProvide(func(factory repository.RepositoryFactory) (*service.HelloService, error) {
 		return service.NewHelloService(factory)
 	})
-
+	containerProvide(func(conf config.Config) (*service.UploadService, error) {
+		return service.NewUploadService(conf.GetString("upload.path"))
+	})
 	return container
 }
 func containerProvide(constructor interface{}, opts ...dig.ProvideOption) {

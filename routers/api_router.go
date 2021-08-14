@@ -26,6 +26,9 @@ func addApiRouter(engine *gin.Engine) {
 	//	统一打印日志
 	engine.Use(middleware.Error)
 
+	// 加载静态文件
+	engine.LoadHTMLGlob("static/view/*")
+	engine.StaticFS("/static", http.Dir("./static"))
 	//Request &Response 相关内容,影响性能看情况开
 	if config.GetInstance().GetBool("application.log.request") {
 		engine.Use(middleware.Logger)
@@ -39,8 +42,11 @@ func addApiRouter(engine *gin.Engine) {
 	// 业务API
 	{
 		v1 := engine.Group("/v1")
-		v1.GET("/hello", controller.HelloController)
-		v1.POST("/hello", controller.Hello2Controller)
+		v1.Group("/file").
+			GET("/upload", controller.GetIndexHTMLController).
+			POST("/upload", controller.UploadFileController).
+			GET("/meta/:file-sha1", controller.GetFileMetaController).
+			GET("download/:file-sha1", controller.DownloadFileController)
 	}
 
 }

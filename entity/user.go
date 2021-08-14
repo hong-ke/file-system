@@ -1,7 +1,12 @@
 package entity
 
+const TableNameUser = "tbl_user"
+
 type User struct {
-	ID       string `xorm:"id"`
-	Name     string
-	Password string
+	Username     string
+	Email        string
+	Phone        string
+	SignupAt     string
+	LastActiveAt string
+	Status       int
 }

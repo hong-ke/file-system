@@ -33,7 +33,7 @@ func Logger(c *gin.Context) {
 	latency := end.Sub(start)
 	requestID, ok := c.Get(RequestIDHeader)
 	if !ok {
-		logrus.Infof("%s | %s| %s |request: %s", latency, ip, path, request)
+		logrus.Infof("%s| %s| %s| %s |request: %s", c.Request.Method, latency, ip, path, request)
 	} else {
 		logrus.WithField(RequestIDInLogName, requestID).Infof("%s | %s| %s |request: %s", latency, ip, path, request)
 	}
