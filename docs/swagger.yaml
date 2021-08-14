@@ -1,0 +1,27 @@
+info:
+  contact: {}
+  description: filesystem api
+  title: 文件系统 api
+paths:
+  /v1/{hello}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Header Auth Access Token of User
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      - description: 群组id
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ""
+      summary: get-hello
+      tags:
+      - hello
+swagger: "2.0"

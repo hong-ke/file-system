@@ -1,0 +1,36 @@
+# 通用配置
+##########
+# 基础服务
+base:
+  db:
+    repository.type: "xorm"
+    xorm.type: "mysql"
+    xorm.host: "localhost"
+    xorm.username: "root"
+    xorm.password: "5t^Y7u*I"
+    xorm.name: "fileserver"
+    xorm.port: "3306"
+    xorm.showsql: false
+  redis:
+    address: "localhost"
+    password: ""
+    port: 6379
+    db: 0
+    maxIdle: 20
+    prefix: "file-system:"
+    timeout: 5
+
+# 网络请求
+http:
+  request:
+    timeout.millisecond: 60000 # http请求超时,默认:60000
+# 应用配置
+application:
+  auth: # 授权
+    exp: "1h" # token过期时长
+  host: "0.0.0.0:8888" # 监听地址,必填项
+  log: # 日志
+    level: 4 # 日志等级   panic:0 fatal:1 error:2 warning:3 info:4 debug:5 trace:6
+    reportcaller: false # 是否打印日志所在代码行数，和方法
+    request: true
+    sql: true
