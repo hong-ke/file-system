@@ -17,9 +17,9 @@
 ## 快速开始
 
 ```bash
-$ git clone https://github.com/LyricTian/gin-admin
+$ git clone https://github.com/hong-ke/file-system
 
-$ cd gin-admin
+$ cd filesystem
 
 # 下载依赖
 $ go mod tidy
